@@ -6,7 +6,7 @@ services:
       ./api
     labels:
       - "traefik.backend=api"
-      - "traefik.frontend.rule=PathPrefix:/api"
+      - "traefik.frontend.rule=PathPrefix:/api, /"
     networks:
       - webgateway
 
