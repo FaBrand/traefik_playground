@@ -7,15 +7,15 @@ echo "================================"
 
 echo "================================"
 echo "Pinging api in /api"
-curl -X GET -H 'Host: localhost' localhost/api -L
+curl -X GET -H 'Host: localhost' localhost/api -L | jq
 echo "================================"
 
 echo "================================"
 echo "Pinging api in root"
-curl -X GET -H 'Host: localhost' localhost -L
+curl -X GET -H 'Host: localhost' localhost -L | jq
 echo "================================"
 
 echo "================================"
 echo "Pinging api through subdomain. I want to get routed to /api tough."
-curl -X GET -H 'Host: api.localhost' localhost -L
+curl -X GET -H 'Host: api.localhost' localhost -L | jq
 echo "================================"

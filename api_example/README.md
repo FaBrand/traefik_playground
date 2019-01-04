@@ -117,4 +117,29 @@ I want to use the same api backend. So i use the [AddPrefix Modifier](https://do
     networks:
       - webgateway
 ```
+The output shows that our rerouting worked
+```bash
+================================
+Pinging api through subdomain. I want to get routed to /api tough.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   363  100   363    0     0   177k      0 --:--:-- --:--:-- --:--:--  177k
+{
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip",
+    "Host": "api.localhost",
+    "Referer": "",
+    "User-Agent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
+    "X-Forwarded-For": "172.27.0.1",
+    "X-Forwarded-Host": "api.localhost",
+    "X-Forwarded-Port": "80",
+    "X-Forwarded-Proto": "http",
+    "X-Forwarded-Server": "33e77a2cb82d",
+    "X-Real-Ip": "172.27.0.1"
+  },
+  "reached": "api"
+}
+================================
+```
 
