@@ -22,7 +22,7 @@ services:
       always
 
   proxy:
-    image: traefik:1.4
+    image: traefik
     command: --web --docker --docker.domain=localhost --logLevel=INFO
     networks:
       - webgateway
@@ -34,6 +34,9 @@ services:
       - /dev/null:/traefik.toml
     restart:
       always
+    labels:
+      # Don't manage this in traefik
+      - "traefik.enable=false"
 
 networks:
   webgateway:
