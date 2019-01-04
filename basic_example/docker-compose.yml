@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  whoami:
+    image: emilevauge/whoami
+    networks:
+      - webgateway
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:whoami.server.test"
+    restart:
+      always
+
+  whoami2:
+    image: emilevauge/whoami
+    networks:
+      - webgateway
+    labels:
+      - "traefik.backend=whoami2"
+      - "traefik.frontend.rule=Host:iamme.server.test"
+    restart:
+      always
+
+  proxy:
+    image: traefik:1.4
+    command: --web --docker --docker.domain=localhost --logLevel=INFO
+    networks:
+      - webgateway
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+    restart:
+      always
+
+networks:
+  webgateway:
+    driver: bridge
