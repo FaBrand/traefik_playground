@@ -10,16 +10,6 @@ services:
     networks:
       - webgateway
 
-  whoami:
-    image: emilevauge/whoami
-    networks:
-      - webgateway
-    labels:
-      - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:whoami.localhost;PathPrefix:/"
-    restart:
-      always
-
   prefixed_api:
     build:
       ./api
