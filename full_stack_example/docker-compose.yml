@@ -1,15 +1,6 @@
 version: '3'
 
 services:
-  api:
-    build:
-      ./api
-    labels:
-      - "traefik.backend=api"
-      - "traefik.frontend.rule=PathPrefix:/api, /"
-    networks:
-      - webgateway
-
   whoami:
     image: emilevauge/whoami
     networks:
