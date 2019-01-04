@@ -25,6 +25,12 @@ import { Component } from '@angular/core';
       <li>
         <h2><a class="nav-link" [routerLink]="['/redirect']" >Redirect to home</a></h2>
       </li>
+      <li>
+          <h2><a class="nav-link" href="http://whoami.localhost" >Whoami</a></h2>
+      </li>
+      <li>
+          <h2><a class="nav-link" href="http://api.localhost" >Api</a></h2>
+      </li>
     </ul>
     <hr/>
     <router-outlet></router-outlet>
