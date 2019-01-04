@@ -9,3 +9,20 @@ source ping_hosts.sh
 ./ping_hosts.sh
 ```
 
+# Learnings
+
+More specific `frontend.rule` settings are more greedy
+
+e.g.
+```yml
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=PathPrefixStrip:/api, /"
+```
+is quite greedy disregarding the different Host setting in the whoami frontend rule
+```yml
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:whoami.localhost, PathPrefix:/"
+```
+According to [the docs](https://docs.traefik.io/basics/#matchers) `,` is an __OR__ operator and `;` __AND__
