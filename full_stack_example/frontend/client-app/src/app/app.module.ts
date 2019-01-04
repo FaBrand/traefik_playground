@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FoobarComponent } from './foobar/foobar.component';
 import { LoremipsumComponent } from './loremipsum/loremipsum.component';
+import { RemotedataComponent } from './remotedata/remotedata.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FoobarComponent,
-    LoremipsumComponent
+    LoremipsumComponent,
+    RemotedataComponent
   ],
   imports: [
     BrowserModule,
