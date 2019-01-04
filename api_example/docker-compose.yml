@@ -6,7 +6,7 @@ services:
       ./api
     labels:
       - "traefik.backend=api"
-      - "traefik.frontend.rule=Prefix:/api"
+      - "traefik.frontend.rule=PathPrefix:/api"
     networks:
       - webgateway
 
@@ -16,7 +16,7 @@ services:
       - webgateway
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:whoami.server.test"
+      - "traefik.frontend.rule=Host:whoami.localhost"
     restart:
       always
 

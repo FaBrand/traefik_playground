@@ -2,10 +2,15 @@
 
 echo "================================"
 echo "Pinging whoami1"
-curl -X GET -H 'Host: whoami.server.test' localhost -L | grep -e '^IP: 172.*' -A15 -B15
+curl -X GET -H 'Host: whoami.localhost' localhost -L
 echo "================================"
 
 echo "================================"
-echo "Pinging whoami2"
-curl -X GET -H 'Host: iamme.server.test' localhost -L | grep -e '^IP: 172.*' -A15 -B15
+echo "Pinging api in /api"
+curl -X GET -H 'Host: localhost' localhost/api -L
+echo "================================"
+
+echo "================================"
+echo "Pinging api in root"
+curl -X GET -H 'Host: localhost' localhost -L
 echo "================================"
