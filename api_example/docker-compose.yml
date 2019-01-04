@@ -20,6 +20,25 @@ services:
     restart:
       always
 
+  prefixed_api:
+    build:
+      ./api
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=Host:api.localhost;AddPrefix:/api"
+    networks:
+      - webgateway
+
+  whoami:
+    image: emilevauge/whoami
+    networks:
+      - webgateway
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:whoami.localhost;PathPrefix:/"
+    restart:
+      always
+
   proxy:
     image: traefik
     command: --web --docker --docker.domain=localhost --logLevel=INFO

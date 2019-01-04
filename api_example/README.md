@@ -99,3 +99,22 @@ Pinging api in root
 {"headers":{"Accept":"*/*","Accept-Encoding":"gzip","Host":"localhost","Referer":"","User-Agent":"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)","X-Forwarded-For":"172.27.0.1","X-Forwarded-Host":"localhost","X-Forwarded-Port":"80","X-Forwarded-Proto":"http","X-Forwarded-Server":"33e77a2cb82d","X-Real-Ip":"172.27.0.1"},"reached":"root"}
 ================================
 ```
+
+## Putting the api in a subdomain
+The idea is to access the api via a subdomain like so:
+```bash
+http://api.localhost/
+```
+I want to use the same api backend. So i use the [AddPrefix Modifier](https://docs.traefik.io/basics/#modifiers) to re-route the request for the backend.
+
+```yml
+  prefixed_api:
+    build:
+      ./api
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=Host:api.localhost;AddPrefix:/api"
+    networks:
+      - webgateway
+```
+
