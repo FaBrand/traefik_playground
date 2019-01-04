@@ -24,7 +24,7 @@ services:
     build:
       ./api
     labels:
-      - "traefik.backend=api"
+      - "traefik.backend=prefixed_api"
       - "traefik.frontend.rule=Host:api.localhost;AddPrefix:/api"
     networks:
       - webgateway
