@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  client-app:
+    build:
+      ./frontend
+    labels:
+      - "traefik.backend=client-app"
+      - "traefik.frontend.rule=Host:localhost;PathPrefix:/"
+    networks:
+      - webgateway
+
   whoami:
     image: emilevauge/whoami
     networks:
