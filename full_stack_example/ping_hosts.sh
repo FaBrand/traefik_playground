@@ -7,7 +7,7 @@ echo "================================"
 
 echo "================================"
 echo "Pinging api through subdomain. I want to get routed to /api tough."
-curl -X GET -H 'Host: api.localhost' localhost -L | jq
+curl -X GET -H 'Host: api.localhost' localhost -L
 echo "================================"
 
 echo "================================"
