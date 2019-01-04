@@ -6,6 +6,7 @@ import { LoremipsumComponent } from './loremipsum/loremipsum.component';
 const routes: Routes = [
     { path: 'foobar', component: FoobarComponent },
     { path: 'loremipsum', component: LoremipsumComponent },
+    { path: 'redirect', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({

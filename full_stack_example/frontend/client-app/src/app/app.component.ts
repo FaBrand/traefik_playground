@@ -22,6 +22,9 @@ import { Component } from '@angular/core';
       <li>
         <h2><a class="nav-link" [routerLink]="['/loremipsum']" >LoremIpsum Link</a></h2>
       </li>
+      <li>
+        <h2><a class="nav-link" [routerLink]="['/redirect']" >Redirect to home</a></h2>
+      </li>
     </ul>
     <hr/>
     <router-outlet></router-outlet>
