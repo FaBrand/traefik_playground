@@ -6,7 +6,10 @@ services:
       ./api
     labels:
       - "traefik.backend=api"
-      - "traefik.frontend.rule=PathPrefix:/api, /"
+      # - "traefik.frontend.rule=PathPrefix:/api, /"
+      # If the path prefix is stripped, this sucks up all requests
+      # the traffic that is supposed to go to whoami.localhost is also routed to here
+      - "traefik.frontend.rule=PathPrefixStrip:/api, /"
     networks:
       - webgateway
 
