@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  api:
+    build:
+      ./api
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=PathPrefix:/api, /"
+    networks:
+      - webgateway
+
+  whoami:
+    image: emilevauge/whoami
+    networks:
+      - webgateway
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:whoami.localhost;PathPrefix:/"
+    restart:
+      always
+
+  prefixed_api:
+    build:
+      ./api
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=Host:api.localhost;AddPrefix:/api"
+    networks:
+      - webgateway
+
+  whoami:
+    image: emilevauge/whoami
+    networks:
+      - webgateway
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:whoami.localhost;PathPrefix:/"
+    restart:
+      always
+
+  proxy:
+    image: traefik
+    command: --web --docker --docker.domain=localhost --logLevel=INFO
+    networks:
+      - webgateway
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+    restart:
+      always
+    labels:
+      # Don't manage this in traefik
+      - "traefik.enable=false"
+
+networks:
+  webgateway:
+    driver: bridge
