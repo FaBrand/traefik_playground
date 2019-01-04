@@ -19,7 +19,7 @@ services:
       - webgateway
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:whoami.localhost, PathPrefix:/"
+      - "traefik.frontend.rule=Host:whoami.localhost;PathPrefix:/"
     restart:
       always
 
