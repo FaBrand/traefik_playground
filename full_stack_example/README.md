@@ -20,7 +20,8 @@ We need to access the app through the proxy, so let's fire it up:
 docker-compose up client-app proxy
 ```
 
-Our ping script now correctly shows that the other two backends are not reachable
+Our ping script now correctly shows that the other two backends are not reachable.
+The site is served as expected
 ```bash
 $ ./ping_hosts.sh
 ================================
