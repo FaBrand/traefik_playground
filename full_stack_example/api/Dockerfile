@@ -1,13 +1,18 @@
 From python:3.6-alpine
 
 RUN apk update && apk add postgresql-dev gcc libc-dev
-RUN pip install flask flask_cors flask_sqlalchemy flask_migrate psycopg2
+RUN pip install flask flask_cors flask_sqlalchemy flask_migrate psycopg2 gunicorn
 RUN apk del gcc libc-dev
 
-COPY api.py api.py
+COPY api.py boot.sh ./
+ADD migrations migrations
+RUN chmod +x boot.sh
 
 EXPOSE 5000
-ENTRYPOINT ["python"]
-CMD ["api.py"]
+ENV FLASK_APP api.py
+
+EXPOSE 5000
+ENTRYPOINT ["sh"]
+CMD ["boot.sh"]
 
 
