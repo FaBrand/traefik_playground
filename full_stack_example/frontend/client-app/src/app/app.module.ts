@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +9,7 @@ import { FoobarComponent } from './foobar/foobar.component';
 import { LoremipsumComponent } from './loremipsum/loremipsum.component';
 import { RemotedataComponent } from './remotedata/remotedata.component';
 import { NewnumbersComponent } from './newnumbers/newnumbers.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NewnumbersComponent } from './newnumbers/newnumbers.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
