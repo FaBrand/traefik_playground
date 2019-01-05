@@ -29,6 +29,9 @@ import { Component } from '@angular/core';
         <h2><a class="nav-link" [routerLink]="['/apidata']" >Asyncdata</a></h2>
       </li>
       <li>
+        <h2><a class="nav-link" [routerLink]="['/adddata']" >Add new data</a></h2>
+      </li>
+      <li>
           <h2><a class="nav-link" href="http://whoami.localhost" >Whoami</a></h2>
       </li>
       <li>
