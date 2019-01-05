@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { FoobarComponent } from './foobar/foobar.component';
 import { LoremipsumComponent } from './loremipsum/loremipsum.component';
 import { RemotedataComponent } from './remotedata/remotedata.component';
+import { NewnumbersComponent } from './newnumbers/newnumbers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FoobarComponent,
     LoremipsumComponent,
-    RemotedataComponent
+    RemotedataComponent,
+    NewnumbersComponent
   ],
   imports: [
     BrowserModule,
