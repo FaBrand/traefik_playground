@@ -66,6 +66,21 @@ services:
     ports:
       - 5432:5432
 
+  pgadmin:
+    restart: always
+    image: dpage/pgadmin4
+    env_file:
+      - ./pgadmin/pgadmin.env
+    volumes:
+      - ./pgadmin/servers.json:/servers.json
+    labels:
+      - "traefik.backend=pgadmin"
+      - "traefik.frontend.rule=Host:pgadmin.localhost;PathPrefix:/"
+    ports:
+      - 4000:80
+    networks:
+      - db_nw
+
 networks:
   webgateway:
     driver: bridge
