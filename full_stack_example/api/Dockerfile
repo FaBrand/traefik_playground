@@ -1,6 +1,6 @@
 From python:3.6-alpine
 
-RUN pip install flask
+RUN pip install flask flask_cors
 
 COPY api.py api.py
 
