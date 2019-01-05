@@ -22,6 +22,12 @@ export class ApiserviceService {
     );
   }
 
+  postData(data: number[]) {
+    this.http.post(this.dataUrl, data).pipe(
+      catchError(this.handleError("postData"))
+    );
+  }
+
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
