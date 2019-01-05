@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
-import { environment } from './../environments/environment';
+import { environment } from '../environments/environment';
+
+export class Data{
+  data: number[]
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +15,8 @@ export class ApiserviceService {
   private dataUrl = environment.apiUrl + "/data"; // URL to web api
 
   getData(): Observable<number[]> {
-    console.log(this.dataUrl);
-    return this.http.get<number[]>(this.dataUrl).pipe(
-      tap(cars => console.log(cars)),
+    return this.http.get<Data>(this.dataUrl).pipe(
+      map(raw => raw.data),
       catchError(this.handleError("getData", []))
     );
   }
