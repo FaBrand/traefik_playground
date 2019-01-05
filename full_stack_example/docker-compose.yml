@@ -15,7 +15,7 @@ services:
       - "traefik.backend=prefixed_api"
       - "traefik.frontend.rule=Host:api.localhost;AddPrefix:/api"
     env_file:
-      - ./api/.env
+      - ./api/api_env
     depends_on:
       - postgres
 
