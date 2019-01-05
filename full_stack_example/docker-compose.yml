@@ -7,8 +7,6 @@ services:
     labels:
       - "traefik.backend=client-app"
       - "traefik.frontend.rule=Host:localhost;PathPrefix:/"
-    networks:
-      - webgateway
 
   prefixed_api:
     build:
@@ -16,9 +14,6 @@ services:
     labels:
       - "traefik.backend=prefixed_api"
       - "traefik.frontend.rule=Host:api.localhost;AddPrefix:/api"
-    networks:
-      - webgateway
-      - db_nw
     env_file:
       - ./api/.env
     depends_on:
@@ -26,8 +21,6 @@ services:
 
   whoami:
     image: emilevauge/whoami
-    networks:
-      - webgateway
     labels:
       - "traefik.backend=whoami"
       - "traefik.frontend.rule=Host:whoami.localhost;PathPrefix:/"
@@ -37,8 +30,6 @@ services:
   proxy:
     image: traefik
     command: --web --docker --docker.domain=localhost --logLevel=INFO
-    networks:
-      - webgateway
     ports:
       - "80:80"
       - "8080:8080"
@@ -58,17 +49,15 @@ services:
       - postgres.env
     volumes:
       - ./postgres-data/postgres:/var/lib/postgresql/data
-    networks:
-      - db_nw
     labels:
       # Don't manage this in traefik
       - "traefik.enable=false"
-    ports:
-      - 5432:5432
 
   pgadmin:
     restart: always
     image: dpage/pgadmin4
+    depends_on:
+      - postgres
     env_file:
       - ./pgadmin/pgadmin.env
     volumes:
@@ -76,13 +65,3 @@ services:
     labels:
       - "traefik.backend=pgadmin"
       - "traefik.frontend.rule=Host:pgadmin.localhost;PathPrefix:/"
-    ports:
-      - 4000:80
-    networks:
-      - db_nw
-
-networks:
-  webgateway:
-    driver: bridge
-  db_nw:
-    driver: bridge
