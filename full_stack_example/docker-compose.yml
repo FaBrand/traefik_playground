@@ -18,6 +18,11 @@ services:
       - "traefik.frontend.rule=Host:api.localhost;AddPrefix:/api"
     networks:
       - webgateway
+      - db_nw
+    env_file:
+      - ./api/.env
+    depends_on:
+      - postgres
 
   whoami:
     image: emilevauge/whoami
@@ -46,6 +51,23 @@ services:
       # Don't manage this in traefik
       - "traefik.enable=false"
 
+  postgres:
+    restart: always
+    image: postgres:10
+    env_file:
+      - postgres.env
+    volumes:
+      - ./postgres-data/postgres:/var/lib/postgresql/data
+    networks:
+      - db_nw
+    labels:
+      # Don't manage this in traefik
+      - "traefik.enable=false"
+    ports:
+      - 5432:5432
+
 networks:
   webgateway:
+    driver: bridge
+  db_nw:
     driver: bridge
