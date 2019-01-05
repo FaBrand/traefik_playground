@@ -9,7 +9,7 @@ services:
       - "traefik.backend=whoami"
       - "traefik.frontend.rule=Host:whoami.server.test"
     restart:
-      always
+      unless-stopped
 
   whoami2:
     image: emilevauge/whoami
@@ -19,7 +19,7 @@ services:
       - "traefik.backend=whoami2"
       - "traefik.frontend.rule=Host:iamme.server.test"
     restart:
-      always
+      unless-stopped
 
   proxy:
     image: traefik
@@ -33,7 +33,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /dev/null:/traefik.toml
     restart:
-      always
+      unless-stopped
     labels:
       # Don't manage this in traefik
       - "traefik.enable=false"
