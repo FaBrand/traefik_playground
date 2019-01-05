@@ -1,7 +1,7 @@
 From python:3.6-alpine
 
 RUN apk update && apk add postgresql-dev gcc libc-dev
-RUN pip install flask flask_cors flask_sqlalchemy flask_migrate psycopg2 gunicorn
+RUN pip install flask flask_cors flask_sqlalchemy flask_migrate psycopg2 gunicorn flask_marshmallow
 RUN apk del gcc libc-dev
 
 COPY api.py boot.sh ./

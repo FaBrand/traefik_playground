@@ -5,7 +5,8 @@ import { catchError, map, tap } from "rxjs/operators";
 import { environment } from '../environments/environment';
 
 export class Data{
-  data: number[]
+  id: number
+  data: number
 }
 
 @Injectable({
@@ -15,8 +16,8 @@ export class ApiserviceService {
   private dataUrl = environment.apiUrl + "/data"; // URL to web api
 
   getData(): Observable<number[]> {
-    return this.http.get<Data>(this.dataUrl).pipe(
-      map(raw => raw.data),
+    return this.http.get<Data[]>(this.dataUrl).pipe(
+      map(raw => raw.map(obj => obj.data)),
       catchError(this.handleError("getData", []))
     );
   }
