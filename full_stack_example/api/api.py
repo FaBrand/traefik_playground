@@ -53,8 +53,7 @@ def api_add_data():
 
     db.session.add_all([DataEntry(data=i) for i in content])
     db.session.commit()
-
-    return 'Received json data: {}\n'.format(content), 200
+    return jsonify({'success':True})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
