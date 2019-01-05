@@ -23,9 +23,10 @@ export class ApiserviceService {
   }
 
   postData(data: number[]) {
+    console.log(data);
     this.http.post(this.dataUrl, data).pipe(
       catchError(this.handleError("postData"))
-    );
+    ).subscribe();
   }
 
   private handleError<T>(operation = "operation", result?: T) {
