@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newnumbers.component.css']
 })
 export class NewnumbersComponent implements OnInit {
+  public newNumbers: string = "";
 
   constructor() { }
 
